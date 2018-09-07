@@ -1,7 +1,10 @@
 package kz.edu.nu.cs.exercise;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 class Logger {
@@ -20,7 +23,10 @@ class Logger {
     }
 
     void log(HttpServletRequest request) {
-        String record = request.getRemoteHost();
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        String record = df.format(new Date());
+        record += "|" + request.getRemoteHost();
+        record += "|" + request.getContextPath();
         logs.add(record);
     }
 
